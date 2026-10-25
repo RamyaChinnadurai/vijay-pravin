@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" href="/img/avatar.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Baloo+2:wght@600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Baloo+2:wght@600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Caveat:wght@500;600;700&family=Space+Mono:wght@700&family=Oswald:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 
   <script type="application/ld+json">
@@ -52,6 +52,12 @@
 <body>
   <!-- SVG icon sprite -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" result="rough"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.4 0 0 0 1.35" result="wear"/>
+      <feComposite in="rough" in2="wear" operator="in"/>
+    </filter>
     <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></symbol>
     <symbol id="i-instagram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></symbol>
@@ -217,41 +223,56 @@
     <!-- BITSCRUNCH -->
     <section class="section" id="bitscrunch">
       <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow reveal">Previously</span>
-          <h2 class="reveal">bitsCrunch: <em>AI forensics</em> for the blockchain.</h2>
+        <div class="split-head">
+          <div>
+            <span class="eyebrow reveal">Previously · Founder and CEO</span>
+            <h2 class="reveal">bitsCrunch, <em>the NFT police.</em></h2>
+          </div>
           <p class="section-sub reveal">
             A decentralized, AI-powered data network that gave developers, marketplaces and
-            investors reliable, manipulation-free insight into digital assets.
+            investors reliable, manipulation-free insight into digital assets. These are the
+            backers who boarded.
           </p>
         </div>
 
-        <div class="bento bento-3">
-          <article class="card card-raise reveal">
-            <span class="card-tag">Flagship raise</span>
-            <h3>$3.6M oversubscribed round led by Animoca Brands</h3>
-            <p>With Coinbase Ventures, Crypto.com Capital and Polygon Studios, followed by a CoinList community sale and strategic rounds that took total capital raised past <strong>$12M</strong>.</p>
-          </article>
-          <article class="card reveal">
-            <span class="card-tag">Product</span>
-            <h3>UnleashNFTs</h3>
-            <p>"CoinMarketCap for NFTs, with forensics on top." Real-time market data, dashboards and reports across chains.</p>
-          </article>
-          <article class="card reveal">
-            <span class="card-tag">Product</span>
-            <h3>Scour</h3>
-            <p>AI that targets NFT wash trading. Clients saw a <strong>40% drop</strong> within the first two months.</p>
-          </article>
+        <div class="board reveal" aria-label="bitsCrunch investors">
+          <div class="board-top">
+            <span class="board-title"><span class="plane">✈</span> Departures</span>
+            <span class="board-sub">bitsCrunch · Munich</span>
+            <span class="board-total">Total raised <span class="flap flap-gold" data-text="$12M+"></span></span>
+          </div>
+          <div class="board-head">
+            <span class="col-flight">Flight</span><span>Backer</span><span class="col-role">Round</span><span>Status</span>
+          </div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC001"></span><span class="flap" data-text="ANIMOCA BRANDS" data-pad="20"></span><span class="flap col-role" data-text="LEAD $3.6M" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC002"></span><span class="flap" data-text="COINBASE VENTURES" data-pad="20"></span><span class="flap col-role" data-text="$3.6M ROUND" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC003"></span><span class="flap" data-text="CRYPTO.COM CAPITAL" data-pad="20"></span><span class="flap col-role" data-text="$3.6M ROUND" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC004"></span><span class="flap" data-text="POLYGON STUDIOS" data-pad="20"></span><span class="flap col-role" data-text="$3.6M ROUND" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC005"></span><span class="flap" data-text="CHAINLINK" data-pad="20"></span><span class="flap col-role" data-text="INVESTOR" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC006"></span><span class="flap" data-text="MORNINGSTAR VENTURES" data-pad="20"></span><span class="flap col-role" data-text="INVESTOR" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC007"></span><span class="flap" data-text="HASHKEY CAPITAL" data-pad="20"></span><span class="flap col-role" data-text="INVESTOR" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC008"></span><span class="flap" data-text="GATE.IO LABS" data-pad="20"></span><span class="flap col-role" data-text="INVESTOR" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
+          <div class="board-row"><span class="flap col-flight" data-text="BC009"></span><span class="flap" data-text="BORDERLESS CAPITAL" data-pad="20"></span><span class="flap col-role" data-text="INVESTOR" data-pad="11"></span><span class="flap flap-green" data-text="BOARDED"></span></div>
         </div>
 
-        <div class="logos reveal">
-          <p class="logos-title">Backed by</p>
-          <div class="marquee">
-            <div class="marquee-track">
-              <span>Coinbase Ventures</span><span>Animoca Brands</span><span>Crypto.com Capital</span><span>Polygon</span><span>Chainlink</span><span>Morningstar Ventures</span><span>HashKey Capital</span><span>Gate.io Labs</span><span>Borderless Capital</span><span>Shima Capital</span><span>Cypher Capital</span><span>GravityX</span>
-              <span aria-hidden="true">Coinbase Ventures</span><span aria-hidden="true">Animoca Brands</span><span aria-hidden="true">Crypto.com Capital</span><span aria-hidden="true">Polygon</span><span aria-hidden="true">Chainlink</span><span aria-hidden="true">Morningstar Ventures</span><span aria-hidden="true">HashKey Capital</span><span aria-hidden="true">Gate.io Labs</span><span aria-hidden="true">Borderless Capital</span><span aria-hidden="true">Shima Capital</span><span aria-hidden="true">Cypher Capital</span><span aria-hidden="true">GravityX</span>
-            </div>
+        <div class="bc-grid">
+          <div class="raise reveal">
+            <span class="raise-k">Flagship round · Feb 2022</span>
+            <span class="raise-num">$3.6M</span>
+            <p>Oversubscribed private round led by <strong>Animoca Brands</strong>, with Coinbase Ventures, Crypto.com Capital and Polygon Studios. A CoinList community sale and strategic rounds followed, taking the total past <strong>$12M</strong>.</p>
           </div>
+          <article class="tag reveal" style="--r:-3deg">
+            <span class="tag-k">Priority · Product 01</span>
+            <h3>UnleashNFTs</h3>
+            <p>"CoinMarketCap for NFTs, with forensics on top." Real-time market data, dashboards and reports across chains.</p>
+            <span class="tag-code">UNL · MUC</span>
+          </article>
+          <article class="tag reveal" style="--r:2.5deg">
+            <span class="tag-k">Priority · Product 02</span>
+            <h3>Scour</h3>
+            <p>AI that hunts NFT wash trading. Clients saw a <strong>40% drop</strong> within the first two months.</p>
+            <span class="tag-code">SCR · MUC</span>
+          </article>
         </div>
       </div>
     </section>
@@ -259,21 +280,86 @@
     <!-- ACHIEVEMENTS -->
     <section class="section" id="achievements">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow reveal">Achievements</span>
-          <h2 class="reveal">Milestones and <em>recognition.</em></h2>
+        <div class="split-head">
+          <div>
+            <span class="eyebrow reveal">Achievements</span>
+            <h2 class="reveal">Stamps collected <em>along the way.</em></h2>
+          </div>
+          <p class="section-sub reveal">Every founder's passport tells a story. Here are a few of the stamps in Vijay's.</p>
         </div>
 
-        <div class="ach-grid">
-          <div class="ach glass reveal"><span class="ach-num">no. 01</span><h3>Raised $12M+ for bitsCrunch</h3><p>From Coinbase Ventures, Animoca Brands, Crypto.com Capital, Polygon, Chainlink, Morningstar Ventures, HashKey and more.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 02</span><h3>3× TEDx speaker</h3><p>Talks on data, AI and the future of trust in the digital economy.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 03</span><h3>52 countries</h3><p>Travelled across 52 countries, building companies, speaking and learning from founders worldwide.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 04</span><h3>Top 40 Under 40 Data Scientists</h3><p>Recognised among India's leading data scientists under 40.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 05</span><h3>Top 20 Data Scientists to follow on LinkedIn</h3><p>Named in 2020 among the most inspiring data professionals globally.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 06</span><h3>Best Startup, Creator Economy and NFT</h3><p>bitsCrunch honoured as Germany's best startup in its category, and among the top AI companies in Munich.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 07</span><h3>40% less wash trading</h3><p>Scour cut wash trading for clients by 40% within two months of launch.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 08</span><h3>Top Men Leaders to Look Up To, 2021</h3><p>Nominated by Passion Vista magazine.</p></div>
-          <div class="ach glass reveal"><span class="ach-num">no. 09</span><h3>Indian Achievers' Forum honoree</h3><p>Featured for building globally from Munich while staying rooted in India.</p></div>
+        <div class="passport reveal">
+          <div class="page page-left">
+            <div class="page-head"><span>Visas · Visa</span><span>07</span></div>
+            <div class="stamps">
+              <svg class="stamp ink-red" style="--r:-12deg" viewBox="0 0 200 200" role="img" aria-label="Raised $12M+ for bitsCrunch from Coinbase Ventures, Animoca Brands and more">
+                <defs><path id="sc1" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+                <circle cx="100" cy="100" r="95" class="s-line s-thick"/><circle cx="100" cy="100" r="88" class="s-line"/><circle cx="100" cy="100" r="58" class="s-line"/>
+                <text class="s-ring"><textPath href="#sc1" textLength="455" lengthAdjust="spacing">★ RAISED FOR BITSCRUNCH ★ COINBASE · ANIMOCA ·</textPath></text>
+                <text x="100" y="110" class="s-big" text-anchor="middle">$12M+</text>
+                <text x="100" y="134" class="s-small" text-anchor="middle">USD</text>
+              </svg>
+              <svg class="stamp ink-blue" style="--r:6deg" viewBox="0 0 260 160" role="img" aria-label="3x TEDx speaker">
+                <rect x="4" y="4" width="252" height="152" rx="10" class="s-line s-thick"/><rect x="13" y="13" width="234" height="134" rx="6" class="s-line"/>
+                <text x="130" y="44" class="s-small" text-anchor="middle">ADMITTED · SPEAKER</text>
+                <text x="130" y="104" class="s-huge" text-anchor="middle">TEDx</text>
+                <text x="130" y="134" class="s-mid" text-anchor="middle">× 3 TALKS</text>
+              </svg>
+              <svg class="stamp ink-green" style="--r:-4deg" viewBox="0 0 260 170" role="img" aria-label="52 countries travelled">
+                <ellipse cx="130" cy="85" rx="124" ry="79" class="s-line s-thick"/><ellipse cx="130" cy="85" rx="112" ry="68" class="s-line s-dash"/>
+                <text x="130" y="54" class="s-small" text-anchor="middle">ARRIVALS</text>
+                <text x="130" y="112" class="s-huge" text-anchor="middle">52</text>
+                <text x="130" y="134" class="s-small" text-anchor="middle">COUNTRIES</text>
+              </svg>
+              <svg class="stamp ink-purple" style="--r:9deg" viewBox="0 0 240 170" role="img" aria-label="Top 40 Under 40 Data Scientists in India">
+                <polygon points="30,6 210,6 234,85 210,164 30,164 6,85" class="s-line s-thick"/><polygon points="36,16 204,16 224,85 204,154 36,154 16,85" class="s-line"/>
+                <text x="120" y="52" class="s-small" text-anchor="middle">INDIA · DATA SCIENCE</text>
+                <text x="120" y="100" class="s-big" text-anchor="middle">TOP 40</text>
+                <text x="120" y="130" class="s-mid" text-anchor="middle">UNDER 40</text>
+              </svg>
+              <svg class="stamp ink-navy" style="--r:-8deg" viewBox="0 0 200 200" role="img" aria-label="Top 20 Data Scientists to follow on LinkedIn, 2020">
+                <defs><path id="sc2" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+                <circle cx="100" cy="100" r="95" class="s-line s-thick"/><circle cx="100" cy="100" r="58" class="s-line s-dash"/>
+                <text class="s-ring"><textPath href="#sc2" textLength="455" lengthAdjust="spacing">DATA SCIENTISTS TO FOLLOW ★ LINKEDIN ★ 2020 ★</textPath></text>
+                <text x="100" y="98" class="s-small" text-anchor="middle">TOP</text>
+                <text x="100" y="132" class="s-big" text-anchor="middle">20</text>
+              </svg>
+            </div>
+          </div>
+          <div class="page page-right">
+            <div class="page-head"><span>Visas · Visa</span><span>08</span></div>
+            <div class="stamps">
+              <svg class="stamp ink-red" style="--r:5deg" viewBox="0 0 270 160" role="img" aria-label="bitsCrunch, Best Startup in Creator Economy and NFT, Germany">
+                <rect x="4" y="4" width="262" height="152" class="s-line s-thick s-dash"/><rect x="14" y="14" width="242" height="132" class="s-line"/>
+                <text x="135" y="46" class="s-small" text-anchor="middle">BUNDESREPUBLIK · GERMANY</text>
+                <text x="135" y="92" class="s-mid2" text-anchor="middle">BEST STARTUP</text>
+                <text x="135" y="124" class="s-small" text-anchor="middle">CREATOR ECONOMY &amp; NFT</text>
+              </svg>
+              <svg class="stamp ink-blue" style="--r:-10deg" viewBox="0 0 200 200" role="img" aria-label="Scour cut wash trading by 40 percent">
+                <defs><path id="sc3" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+                <circle cx="100" cy="100" r="95" class="s-line s-thick"/><circle cx="100" cy="100" r="88" class="s-line"/><circle cx="100" cy="100" r="58" class="s-line"/>
+                <text class="s-ring"><textPath href="#sc3" textLength="455" lengthAdjust="spacing">WASH TRADING ★ SCOUR ★ IN TWO MONTHS ★</textPath></text>
+                <text x="100" y="112" class="s-big" text-anchor="middle">−40%</text>
+              </svg>
+              <svg class="stamp ink-green" style="--r:7deg" viewBox="0 0 260 150" role="img" aria-label="Top Men Leaders to Look Up To, 2021, Passion Vista">
+                <rect x="4" y="4" width="252" height="142" rx="70" class="s-line s-thick"/><rect x="14" y="14" width="232" height="122" rx="60" class="s-line"/>
+                <text x="130" y="50" class="s-small" text-anchor="middle">PASSION VISTA · 2021</text>
+                <text x="130" y="90" class="s-mid2" text-anchor="middle">TOP LEADERS</text>
+                <text x="130" y="116" class="s-small" text-anchor="middle">TO LOOK UP TO</text>
+              </svg>
+              <svg class="stamp ink-purple" style="--r:-5deg" viewBox="0 0 250 170" role="img" aria-label="Indian Achievers' Forum honoree">
+                <ellipse cx="125" cy="85" rx="119" ry="79" class="s-line s-thick"/><ellipse cx="125" cy="85" rx="108" ry="68" class="s-line"/>
+                <text x="125" y="60" class="s-small" text-anchor="middle">ACHIEVERS' FORUM</text>
+                <text x="125" y="104" class="s-big" text-anchor="middle">HONOREE</text>
+                <text x="125" y="128" class="s-small" text-anchor="middle">CHENNAI · MUNICH</text>
+              </svg>
+              <div class="holder">
+                <span class="holder-k">Holder</span>
+                <span class="holder-v">Vijay Pravin Maharajan</span>
+                <span class="holder-sig">Vijay Pravin</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
