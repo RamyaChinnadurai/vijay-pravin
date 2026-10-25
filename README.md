@@ -2,7 +2,7 @@
 
 # Vijay Pravin
 
-Founder profile website for Vijay Pravin Maharajan — Founder & CEO of bitsCrunch. Served at [vijaypravin.com](https://vijaypravin.com).
+Founder profile website for Vijay Pravin Maharajan, Founder and CEO of HeyUla. Served at [vijaypravin.com](https://vijaypravin.com).
 
 Static site (HTML/CSS/JS, no build step), deployed on Vercel.
 
