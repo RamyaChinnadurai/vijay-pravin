@@ -58,7 +58,7 @@ const createBookHandler = ({
       return fail(res, 400, "invalid_slot", "That time is outside Vijay's booking hours.");
     }
 
-    const { mode, calendar } = getCalendar();
+    const { mode, calendar } = await getCalendar();
     if (mode === "mock" && env.BOOKING_MOCK !== "1") {
       return fail(res, 503, "booking_not_configured", "Online booking isn't connected yet. Please email hello@vijaypravin.com.");
     }

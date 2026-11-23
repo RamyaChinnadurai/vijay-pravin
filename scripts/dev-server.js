@@ -29,7 +29,7 @@ const resolveStatic = (pathname) => {
 
 http.createServer(async (req, res) => {
   const { pathname } = new URL(req.url, "http://localhost");
-  const api = /^\/api\/([a-z-]+)$/.exec(pathname);
+  const api = /^\/api\/([a-z-]+(?:\/[a-z-]+)?)$/.exec(pathname);
   if (api) {
     const file = path.join(root, "api", `${api[1]}.js`);
     if (!fs.existsSync(file)) { res.statusCode = 404; return res.end("Not found"); }
