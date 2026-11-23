@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/calendar/:slug(15min|30min|podcast)", "destination": "/calendar.html" }
+    { "source": "/calendar/:slug(15min|30min|podcast)", "destination": "/calendar" }
   ],
   "headers": [
     { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
