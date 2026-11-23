@@ -1,5 +1,5 @@
 // Minimal Google Calendar client over fetch, authorised with Vijay's stored OAuth refresh token.
-// Credentials are read from the environment at call time and never logged or returned.
+// Credentials come from the environment (or the token store) and are never logged or returned.
 
 const crypto = require("crypto");
 
@@ -13,10 +13,14 @@ class GoogleError extends Error {
   }
 }
 
-const isConfigured = (env = process.env) =>
-  Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET && env.GOOGLE_REFRESH_TOKEN);
+const hasClientCredentials = (env = process.env) => Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
 
-const createGoogleCalendar = ({ env = process.env, fetchImpl = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms)) } = {}) => {
+const createGoogleCalendar = ({
+  env = process.env,
+  refreshToken = env.GOOGLE_REFRESH_TOKEN,
+  fetchImpl = fetch,
+  sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
+} = {}) => {
   const calendarId = env.GOOGLE_CALENDAR_ID || "primary";
   let cached = null;
 
@@ -28,7 +32,7 @@ const createGoogleCalendar = ({ env = process.env, fetchImpl = fetch, sleep = (m
       body: new URLSearchParams({
         client_id: env.GOOGLE_CLIENT_ID,
         client_secret: env.GOOGLE_CLIENT_SECRET,
-        refresh_token: env.GOOGLE_REFRESH_TOKEN,
+        refresh_token: refreshToken,
         grant_type: "refresh_token",
       }),
     });
@@ -85,4 +89,4 @@ const createGoogleCalendar = ({ env = process.env, fetchImpl = fetch, sleep = (m
   return { calendarId, freeBusy, createEvent };
 };
 
-module.exports = { isConfigured, createGoogleCalendar, GoogleError };
+module.exports = { hasClientCredentials, createGoogleCalendar, GoogleError, TOKEN_URL };

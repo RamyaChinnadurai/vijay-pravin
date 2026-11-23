@@ -2,10 +2,18 @@
   "name": "vijay-pravin",
   "private": true,
   "description": "Static site plus Vercel functions for /calendar. No build step; this file only exists for tests and local dev.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "test": "node --test",
-    "check": "node --check api/slots.js && node --check api/book.js && node --check calendar.js && node --test",
+    "check": "node --check api/slots.js && node --check api/book.js && node --check api/google/connect.js && node --check api/google/callback.js && node --check calendar.js && node --test",
     "dev": "node scripts/dev-server.js"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.9.0"
+  },
+  "overrides": {
+    "zod": "4.6.7"
   }
 }

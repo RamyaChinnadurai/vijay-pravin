@@ -1,5 +1,6 @@
-const { isConfigured, createGoogleCalendar } = require("./google");
+const { hasClientCredentials, createGoogleCalendar } = require("./google");
 const { createMockCalendar } = require("./mock");
+const { createTokenStore } = require("./token-store");
 
 const send = (res, status, body) => {
   res.statusCode = status;
@@ -10,14 +11,20 @@ const send = (res, status, body) => {
 
 const fail = (res, status, error, message) => send(res, status, { error, message });
 
+const tokenStore = createTokenStore();
+
+// Refresh token lookup: the GOOGLE_REFRESH_TOKEN env var first, then the token store.
+const findRefreshToken = async (env = process.env, store = tokenStore) => env.GOOGLE_REFRESH_TOKEN || (await store.read());
+
 // One calendar per warm instance: the real one when credentials exist, otherwise the mock.
 let current = null;
-const resolveCalendar = (env = process.env) => {
-  const mode = isConfigured(env) ? "google" : "mock";
-  if (!current || current.mode !== mode) {
-    current = { mode, calendar: mode === "google" ? createGoogleCalendar({ env }) : createMockCalendar() };
+const resolveCalendar = async (env = process.env, store = tokenStore) => {
+  const refreshToken = hasClientCredentials(env) ? await findRefreshToken(env, store) : null;
+  const mode = refreshToken ? "google" : "mock";
+  if (!current || current.mode !== mode || current.refreshToken !== refreshToken) {
+    current = { mode, refreshToken, calendar: mode === "google" ? createGoogleCalendar({ env, refreshToken }) : createMockCalendar() };
   }
-  return current;
+  return { mode: current.mode, calendar: current.calendar };
 };
 
 const clientIp = (req) =>
@@ -50,4 +57,4 @@ const readJson = async (req) => {
   return raw ? JSON.parse(raw) : {};
 };
 
-module.exports = { send, fail, resolveCalendar, clientIp, createRateLimiter, readJson };
+module.exports = { send, fail, resolveCalendar, findRefreshToken, tokenStore, clientIp, createRateLimiter, readJson };

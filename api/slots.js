@@ -29,7 +29,7 @@ const createSlotsHandler = ({ now = Date.now, getCalendar = resolveCalendar } = 
   const dayAfter = addDays(end, 1);
   const fromMs = Math.max(zonedToUtc(start.year, start.month, start.day, 0, 0, timeZone), nowMs);
   const toMs = zonedToUtc(dayAfter.year, dayAfter.month, dayAfter.day, 0, 0, timeZone);
-  const { mode, calendar } = getCalendar();
+  const { mode, calendar } = await getCalendar();
 
   let slots = {};
   if (fromMs < toMs) {

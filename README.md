@@ -12,11 +12,11 @@ npx serve .   # local preview
 
 ## Booking page (`/calendar`)
 
-`calendar.html` is the booking page, and it's backed by two Vercel functions: `api/slots.js` and `api/book.js`. Event types and working hours live in `api/_lib/config.js`. The functions read live free/busy from Google Calendar. Without Google credentials they serve simulated availability and refuse to book. See [docs/google-calendar-setup.md](docs/google-calendar-setup.md).
+`calendar.html` is the booking page, and it's backed by two Vercel functions: `api/slots.js` and `api/book.js`. Event types and working hours live in `api/_lib/config.js`. The functions read live free/busy from Google Calendar. Without Google credentials they serve simulated availability and refuse to book. `api/google/connect.js` and `api/google/callback.js` give Vijay a one-click consent link that saves his refresh token in a private Vercel Blob. See [docs/google-calendar-setup.md](docs/google-calendar-setup.md).
 
 ```sh
 npm run dev   # static site + API on http://localhost:3000
-npm test      # slot and booking tests (node:test, no dependencies)
+npm test      # slot, booking and Google connect tests (node:test, Google and Blob mocked)
 ```
 
 Created in [T3 Code](https://t3.codes).
