@@ -30,8 +30,40 @@ const fmtTime = (iso) => new Intl.DateTimeFormat(undefined, { timeZone: state.tz
 const fmtDay = (date, opts) => new Intl.DateTimeFormat(undefined, { timeZone: "UTC", ...opts }).format(new Date(`${date}T12:00:00Z`));
 const fmtLongDate = (iso) => new Intl.DateTimeFormat(undefined, { timeZone: state.tz, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date(iso));
 
+// After a successful booking, show the confirmation briefly, then go to the home page.
+const HOME_REDIRECT_SECONDS = 10;
+const homeCountdownText = (secondsLeft) => `Taking you home in ${secondsLeft}s`;
+let homeRedirectTick = 0;
+
+const stopHomeRedirect = () => {
+  if (homeRedirectTick) {
+    clearInterval(homeRedirectTick);
+    homeRedirectTick = 0;
+  }
+};
+
+const startHomeRedirect = (seconds = HOME_REDIRECT_SECONDS) => {
+  stopHomeRedirect();
+  const el = $("bk-home-countdown");
+  let left = seconds;
+  const paint = () => {
+    if (el) el.textContent = homeCountdownText(left);
+  };
+  paint();
+  homeRedirectTick = setInterval(() => {
+    left -= 1;
+    if (left <= 0) {
+      stopHomeRedirect();
+      window.location.assign("/");
+      return;
+    }
+    paint();
+  }, 1000);
+};
+
 // ---------- Steps ----------
 const show = (name) => {
+  if (name !== "done") stopHomeRedirect();
   steps.forEach((s) => (s.hidden = s.dataset.step !== name));
   $("bk-back").hidden = name === "types" || name === "done";
   const t = types[state.type];
@@ -246,8 +278,12 @@ const showDone = ({ booking, mode }) => {
   $("bk-meet").hidden = !booking.meetUrl;
   if (booking.meetUrl) $("bk-meet").href = booking.meetUrl;
   show("done");
+  startHomeRedirect();
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+
+$("bk-home").addEventListener("click", () => stopHomeRedirect());
+$("bk-again").addEventListener("click", () => stopHomeRedirect());
 
 // ---------- Routing ----------
 const route = (push) => {

@@ -102,6 +102,10 @@
 .bk-summary dd { margin: 0; font-weight: 600; color: var(--navy); }
 .bk-summary dd::first-letter { text-transform: uppercase; }
 .bk-done .btn[hidden] { display: none; }
+.bk-done-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.bk-done-actions .btn { text-decoration: none; }
+.bk-home-countdown { margin: 14px 0 0; font-size: 15px; font-weight: 600; color: var(--muted); }
+.bk-home-countdown:empty { display: none; }
 .bk-again { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--blue-deep); }
 
 @media (max-width: 860px) {
