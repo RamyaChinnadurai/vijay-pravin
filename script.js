@@ -100,3 +100,79 @@ const stampIo = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.25 });
 document.querySelectorAll(".passport").forEach((p) => stampIo.observe(p));
+
+// ---------- Hero ----------
+const hero = document.querySelector(".hero");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// Live Munich clock
+const clock = document.querySelector("[data-munich-time]");
+if (clock) {
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Berlin", hour: "2-digit", minute: "2-digit" });
+  const tickClock = () => (clock.textContent = fmt.format(new Date()));
+  tickClock();
+  setInterval(tickClock, 15000);
+}
+
+// "Data scientist." decodes from noise
+const scramble = document.querySelector("[data-scramble]");
+if (scramble && !reduce) {
+  const final = scramble.dataset.scramble;
+  const glyphs = "01<>/{}[]#$%&*+=?ABCDEFXYZ";
+  const start = performance.now() + 450;
+  const duration = 1300;
+  const frame = (now) => {
+    const p = Math.max(0, Math.min((now - start) / duration, 1));
+    const solved = Math.floor(p * final.length);
+    let html = final.slice(0, solved);
+    for (let i = solved; i < final.length; i++) {
+      const ch = final[i];
+      html += ch === " " ? " " : `<span class="sc">${glyphs[(Math.random() * glyphs.length) | 0]}</span>`;
+    }
+    scramble.innerHTML = html;
+    if (p < 1) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
+if (hero && finePointer && !reduce) {
+  // Spotlight follows the cursor
+  hero.addEventListener("pointermove", (e) => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    hero.style.setProperty("--my", `${e.clientY - r.top + 76}px`);
+  });
+
+  // Magnetic buttons
+  hero.querySelectorAll(".magnetic").forEach((btn) => {
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      btn.style.setProperty("--tx", `${(e.clientX - r.left - r.width / 2) * 0.25}px`);
+      btn.style.setProperty("--ty", `${(e.clientY - r.top - r.height / 2) * 0.35}px`);
+    });
+    btn.addEventListener("pointerleave", () => {
+      btn.style.setProperty("--tx", "0px");
+      btn.style.setProperty("--ty", "0px");
+    });
+  });
+
+  // 3D tilt on the boarding pass
+  const card = hero.querySelector(".tilt");
+  if (card) {
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.classList.add("tilting");
+      card.style.setProperty("--ry", `${(x - 0.5) * 12}deg`);
+      card.style.setProperty("--rx", `${(0.5 - y) * 10}deg`);
+      card.style.setProperty("--gx", `${x * 100}%`);
+      card.style.setProperty("--gy", `${y * 100}%`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.classList.remove("tilting");
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  }
+}
